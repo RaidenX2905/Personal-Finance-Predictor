@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+ENV/
+.venv/
+
+# Notebooks
+.ipynb_checkpoints
+
+# Streamlit
+.streamlit/
+
+# Models
+# model.pkl  # We might want to include this if we want it to run immediately, but usually trained models are gitignored. 
+# However, for a small demo repo, keeping it or training it on the fly is fine. I'll comment it out.
