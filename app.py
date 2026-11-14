@@ -226,34 +226,56 @@ button[kind="header"] {
     line-height: 1;
 }
 
-/* Inputs & Form Controls (Date inputs, Selects, Textboxes) */
-input, select, textarea, [data-baseweb="select"], [data-baseweb="input"], [data-testid="stDateInput"] {
+/* Inputs & Form Controls (Date inputs, Number inputs, Textboxes) */
+input, select, textarea {
     background-color: #FFFFFF !important;
-    border: 1px solid var(--hairline) !important;
-    border-radius: 12px !important;
     color: #111113 !important;
-    font-size: 0.9rem !important;
 }
 
-[data-testid="stDateInput"] input {
+[data-baseweb="input"],
+[data-baseweb="input"] > div,
+[data-baseweb="input"] input,
+[data-testid="stDateInput"] input,
+[data-testid="stNumberInput"] input,
+[data-testid="stTextInput"] input {
     background-color: #FFFFFF !important;
     color: #111113 !important;
-    border: none !important;
+    -webkit-text-fill-color: #111113 !important;
     font-weight: 600 !important;
+    font-size: 0.95rem !important;
 }
 
 [data-baseweb="input"] {
     background-color: #FFFFFF !important;
     border: 1px solid var(--hairline) !important;
     border-radius: 12px !important;
+    overflow: hidden !important;
 }
 
-[data-testid="stDateInput"] svg, [data-baseweb="input"] svg {
+/* Number input increment/decrement buttons */
+[data-testid="stNumberInput"] button,
+[data-testid="stNumberInput"] [data-baseweb="button"] {
+    background-color: #F4F3F4 !important;
+    color: #111113 !important;
+    border: none !important;
+}
+
+[data-testid="stNumberInput"] button svg {
     fill: #111113 !important;
+    stroke: #111113 !important;
     color: #111113 !important;
 }
 
-div[data-baseweb="popover"], div[data-baseweb="calendar"] {
+/* Date Input Icons */
+[data-testid="stDateInput"] svg,
+[data-baseweb="input"] svg {
+    fill: #111113 !important;
+    stroke: #111113 !important;
+    color: #111113 !important;
+}
+
+div[data-baseweb="popover"],
+div[data-baseweb="calendar"] {
     background-color: #FFFFFF !important;
     color: #111113 !important;
     border: 1px solid var(--hairline) !important;
