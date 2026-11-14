@@ -71,8 +71,36 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Header & Sidebar Collapse Trigger Button */
 header[data-testid="stHeader"] {
     background: transparent !important;
+    color: #141314 !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] {
+    color: #141314 !important;
+    background-color: #F4F3F4 !important;
+    border: 1px solid var(--hairline) !important;
+    border-radius: 9999px !important;
+    padding: 4px !important;
+    margin: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 1000 !important;
+}
+
+[data-testid="stSidebarCollapsedControl"]:hover {
+    background-color: #E8E7E9 !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] svg,
+[data-testid="stSidebarCollapsedControl"] path,
+button[kind="header"] svg,
+button[kind="header"] {
+    fill: #141314 !important;
+    stroke: #141314 !important;
+    color: #141314 !important;
 }
 
 .stMainBlockContainer {
