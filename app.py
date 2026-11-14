@@ -226,64 +226,81 @@ button[kind="header"] {
     line-height: 1;
 }
 
-/* Inputs & Form Controls (Date inputs, Number inputs, Textboxes) */
+/* Universal Light Mode Form Controls & Input Fields */
 input, select, textarea {
     background-color: #FFFFFF !important;
     color: #111113 !important;
 }
 
-[data-baseweb="input"],
-[data-baseweb="input"] > div,
-[data-baseweb="input"] input,
+[data-testid="stDateInput"],
+[data-testid="stDateInput"] *,
+[data-testid="stDateInput"] div,
 [data-testid="stDateInput"] input,
+[data-testid="stDateInput"] button,
+[data-testid="stNumberInput"],
+[data-testid="stNumberInput"] *,
+[data-testid="stNumberInput"] div,
 [data-testid="stNumberInput"] input,
-[data-testid="stTextInput"] input {
+[data-testid="stTextInput"],
+[data-testid="stTextInput"] *,
+[data-testid="stTextInput"] div,
+[data-testid="stTextInput"] input,
+[data-testid="stSelectbox"],
+[data-testid="stSelectbox"] *,
+[data-testid="stSelectbox"] div,
+[data-baseweb="input"],
+[data-baseweb="input"] *,
+[data-baseweb="base-input"],
+[data-baseweb="base-input"] * {
     background-color: #FFFFFF !important;
     color: #111113 !important;
     -webkit-text-fill-color: #111113 !important;
-    font-weight: 600 !important;
-    font-size: 0.95rem !important;
 }
 
-[data-baseweb="input"] {
+[data-baseweb="input"],
+[data-baseweb="base-input"],
+[data-testid="stDateInput"] > div,
+[data-testid="stNumberInput"] > div,
+[data-testid="stTextInput"] > div {
     background-color: #FFFFFF !important;
     border: 1px solid var(--hairline) !important;
     border-radius: 12px !important;
-    overflow: hidden !important;
+    box-shadow: none !important;
 }
 
-/* Number input increment/decrement buttons */
+/* Stepper buttons on number inputs */
 [data-testid="stNumberInput"] button,
 [data-testid="stNumberInput"] [data-baseweb="button"] {
     background-color: #F4F3F4 !important;
-    color: #111113 !important;
-    border: none !important;
+    border-left: 1px solid var(--hairline) !important;
 }
 
-[data-testid="stNumberInput"] button svg {
-    fill: #111113 !important;
-    stroke: #111113 !important;
-    color: #111113 !important;
+[data-testid="stNumberInput"] button:hover {
+    background-color: #E8E7E9 !important;
 }
 
-/* Date Input Icons */
+/* Date and input icons */
+svg,
 [data-testid="stDateInput"] svg,
-[data-baseweb="input"] svg {
+[data-baseweb="input"] svg,
+[data-baseweb="calendar"] svg {
     fill: #111113 !important;
     stroke: #111113 !important;
     color: #111113 !important;
 }
 
+/* Popover calendar styling */
 div[data-baseweb="popover"],
-div[data-baseweb="calendar"] {
+div[data-baseweb="popover"] *,
+div[data-baseweb="calendar"],
+div[data-baseweb="calendar"] * {
     background-color: #FFFFFF !important;
     color: #111113 !important;
-    border: 1px solid var(--hairline) !important;
-    border-radius: 12px !important;
 }
 
-div[data-baseweb="calendar"] * {
-    color: #111113 !important;
+div[data-baseweb="calendar"] [aria-selected="true"] {
+    background-color: #111113 !important;
+    color: #FFFFFF !important;
 }
 
 /* Buttons - Universal High Contrast Styling */
