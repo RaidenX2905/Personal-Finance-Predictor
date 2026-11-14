@@ -18,7 +18,7 @@ Design System Specification:
 import streamlit as st
 import pandas as pd
 import numpy as np
-import datetime
+from datetime import datetime, date
 import plotly.graph_objects as go
 import os
 import sys
@@ -195,30 +195,52 @@ input, select, textarea, [data-baseweb="select"] {
     font-size: 0.9rem !important;
 }
 
-/* Buttons - Pill Shaped */
-.stButton > button {
-    background-color: var(--action-fill) !important;
-    color: var(--action-label) !important;
-    border: 1px solid var(--action-fill) !important;
+/* Buttons - Universal High Contrast Styling */
+button[data-testid="baseButton-primary"],
+button[data-testid="baseButton-secondary"],
+.stButton > button,
+div[data-testid="stFormSubmitButton"] > button {
+    background-color: #111113 !important;
+    color: #FCFCFD !important;
+    border: 1px solid #111113 !important;
     border-radius: 9999px !important;
     font-weight: 600 !important;
     font-size: 0.85rem !important;
     padding: 0.6rem 1.6rem !important;
+    cursor: pointer !important;
     transition: all 0.15s ease !important;
 }
 
-.stButton > button:hover {
+button[data-testid="baseButton-primary"] *,
+button[data-testid="baseButton-secondary"] *,
+.stButton > button *,
+div[data-testid="stFormSubmitButton"] > button * {
+    color: #FCFCFD !important;
+    font-weight: 600 !important;
+}
+
+button[data-testid="baseButton-primary"]:hover,
+button[data-testid="baseButton-secondary"]:hover,
+.stButton > button:hover,
+div[data-testid="stFormSubmitButton"] > button:hover {
     background-color: #2A2A2E !important;
     border-color: #2A2A2E !important;
+    color: #FCFCFD !important;
 }
 
-.stButton > button[kind="secondary"] {
-    background-color: transparent !important;
-    color: var(--primary-text) !important;
+.stDownloadButton > button {
+    background-color: #FFFFFF !important;
+    color: #141314 !important;
     border: 1px solid var(--hairline) !important;
+    border-radius: 9999px !important;
+    font-weight: 600 !important;
 }
 
-.stButton > button[kind="secondary"]:hover {
+.stDownloadButton > button * {
+    color: #141314 !important;
+}
+
+.stDownloadButton > button:hover {
     background-color: var(--surface) !important;
 }
 
@@ -541,7 +563,7 @@ def render_predictor():
                 step=50.0,
                 format="%.2f"
             )
-            date_input = st.date_input("Transaction Date", value=datetime.date.today())
+            date_input = st.date_input("Transaction Date", value=date.today())
             description_hint = st.text_input("Memo / Note", value="Consulting services retainer")
             st.write("")
             submitted = st.form_submit_button("EVALUATE TRANSACTION", use_container_width=True)
@@ -619,8 +641,8 @@ def render_explorer(df: pd.DataFrame):
         with f2:
             cat_sel = st.selectbox("Category", ["All"] + sorted(list(df["Category"].dropna().unique())))
         with f3:
-            min_d = df["Date"].min().date() if not df.empty else datetime.today().date()
-            max_d = df["Date"].max().date() if not df.empty else datetime.today().date()
+            min_d = df["Date"].min().date() if not df.empty else date.today()
+            max_d = df["Date"].max().date() if not df.empty else date.today()
             date_range = st.date_input("Date Range", [min_d, max_d])
         with f4:
             search_query = st.text_input("Search", placeholder="Search memo...")
@@ -686,7 +708,7 @@ def render_explorer(df: pd.DataFrame):
                 tx_cat = st.selectbox("Category", choices)
                 tx_amt = st.number_input("Amount ($)", min_value=0.01, value=150.00, step=10.0, format="%.2f")
             with c2:
-                tx_dt = st.date_input("Date", value=datetime.today())
+                tx_dt = st.date_input("Date", value=date.today())
                 tx_memo = st.text_input("Memo / Description", placeholder="e.g. AWS Cloud Hosting")
             st.write("")
             if st.form_submit_button("Save Transaction", use_container_width=True):
@@ -850,7 +872,7 @@ def render_goals():
             g_cat = st.selectbox("Category", ["Security", "Growth", "Equipment", "General"])
             g_target = st.number_input("Target Amount ($)", min_value=1.0, value=5000.0, step=100.0, format="%.2f")
             g_init = st.number_input("Current Saved ($)", min_value=0.0, value=500.0, step=50.0, format="%.2f")
-            g_date = st.date_input("Target Date", value=datetime.today())
+            g_date = st.date_input("Target Date", value=date.today())
             st.write("")
             if st.form_submit_button("Save Goal", use_container_width=True):
                 ok, msg = add_goal(g_name, g_target, g_init, g_date.strftime("%Y-%m-%d"), g_cat)
