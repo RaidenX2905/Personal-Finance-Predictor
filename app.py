@@ -88,25 +88,43 @@ header[data-testid="stHeader"] {
     padding-top: 1.5rem !important;
 }
 
-[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label {
-    padding: 0.65rem 1rem !important;
-    border-radius: 9999px !important;
-    color: var(--secondary-text) !important;
-    font-size: 0.88rem !important;
-    font-weight: 500 !important;
-    transition: all 0.15s ease !important;
-    margin-bottom: 0.25rem !important;
-}
-
-[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label:hover {
-    background-color: var(--surface) !important;
+[data-testid="stSidebar"] * {
     color: var(--primary-text) !important;
 }
 
-[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] {
-    background-color: var(--action-fill) !important;
-    color: var(--action-label) !important;
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label {
+    padding: 0.65rem 1rem !important;
+    border-radius: 9999px !important;
+    color: #141314 !important;
+    font-size: 0.92rem !important;
     font-weight: 600 !important;
+    transition: all 0.15s ease !important;
+    margin-bottom: 0.35rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label p,
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label span,
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label div {
+    color: #141314 !important;
+    font-weight: 600 !important;
+    font-size: 0.92rem !important;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label:hover {
+    background-color: #ECEBED !important;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] {
+    background-color: #111113 !important;
+    color: #FCFCFD !important;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] p,
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] span,
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] div {
+    color: #FCFCFD !important;
 }
 
 /* Clean Header Typography */
