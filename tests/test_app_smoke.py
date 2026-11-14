@@ -10,7 +10,6 @@ from core.goals_service import load_goals
 from components.charts import (
     create_income_expense_trend_chart,
     create_category_breakdown_chart,
-    create_cumulative_balance_chart,
     create_budget_variance_chart
 )
 
@@ -27,9 +26,6 @@ def test_full_system_smoke():
     
     fig2 = create_category_breakdown_chart(df)
     assert fig2 is not None
-    
-    fig3 = create_cumulative_balance_chart(df)
-    assert fig3 is not None
     
     # 3. Model artifact and prediction
     artifact = load_model_artifact()

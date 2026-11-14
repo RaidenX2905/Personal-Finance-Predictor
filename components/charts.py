@@ -1,4 +1,4 @@
-"""Poster Modernist Plotly charts adhering to restrained palette, zero gradients, and clean borders."""
+"""Swiss Minimalist charts: Clean white/cream plotting areas, minimal gridlines, cobalt primary accents."""
 
 import plotly.express as px
 import plotly.graph_objects as go
@@ -11,39 +11,34 @@ from core.config import (
     COLOR_PRIMARY_TEXT,
     COLOR_SECONDARY_TEXT,
     COLOR_MUTED_LABELS,
-    COLOR_BORDERS,
-    CHART_PALETTE
+    COLOR_BORDERS
 )
 
-# Standard Plotly Poster Modernist Layout
-BASE_LAYOUT = dict(
+# Swiss Minimalist Plotly Configuration
+SWISS_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
     font=dict(
-        family="General Sans, Aileron, Space Grotesk, sans-serif",
+        family="Inter, -apple-system, sans-serif",
         color=COLOR_PRIMARY_TEXT,
-        size=12
+        size=11
     ),
-    margin=dict(t=40, b=30, l=10, r=10),
+    margin=dict(t=25, b=25, l=10, r=10),
     xaxis=dict(
-        showgrid=True,
-        gridcolor="#D4D3CE",
-        gridwidth=1,
+        showgrid=False,
         zeroline=True,
         zerolinecolor=COLOR_BORDERS,
         zerolinewidth=1,
         linecolor=COLOR_BORDERS,
-        tickfont=dict(color=COLOR_SECONDARY_TEXT, size=11)
+        tickfont=dict(color=COLOR_MUTED_LABELS, size=10)
     ),
     yaxis=dict(
         showgrid=True,
-        gridcolor="#D4D3CE",
+        gridcolor="#DCDAD4",
         gridwidth=1,
-        zeroline=True,
-        zerolinecolor=COLOR_BORDERS,
-        zerolinewidth=1,
-        linecolor=COLOR_BORDERS,
-        tickfont=dict(color=COLOR_SECONDARY_TEXT, size=11)
+        zeroline=False,
+        showline=False,
+        tickfont=dict(color=COLOR_MUTED_LABELS, size=10)
     ),
     legend=dict(
         orientation="h",
@@ -51,20 +46,18 @@ BASE_LAYOUT = dict(
         y=1.02,
         xanchor="right",
         x=1,
-        font=dict(color=COLOR_PRIMARY_TEXT, size=11)
+        font=dict(color=COLOR_SECONDARY_TEXT, size=11)
     )
 )
 
 
 def create_income_expense_trend_chart(df: pd.DataFrame) -> go.Figure:
-    """Monthly Income vs Expense comparison with cobalt and deep ink flat bars."""
+    """Monthly financial performance: Inflows in Cobalt, Outflows in Ink Charcoal."""
     if df.empty:
         return go.Figure()
         
     trend_df = df.groupby(["Month_Year", "Type"])["Amount"].sum().reset_index()
     trend_df = trend_df.sort_values("Month_Year")
-    
-    # Pivot for clean multi-trace bars
     pivot = trend_df.pivot(index="Month_Year", columns="Type", values="Amount").fillna(0.0)
     
     fig = go.Figure()
@@ -74,10 +67,8 @@ def create_income_expense_trend_chart(df: pd.DataFrame) -> go.Figure:
             name="Income",
             x=pivot.index,
             y=pivot["Income"],
-            marker=dict(
-                color=COLOR_PRIMARY_BLUE,
-                line=dict(color=COLOR_PRIMARY_BLUE, width=1)
-            )
+            marker=dict(color=COLOR_PRIMARY_BLUE),
+            width=0.35
         ))
         
     if "Expense" in pivot.columns:
@@ -85,23 +76,21 @@ def create_income_expense_trend_chart(df: pd.DataFrame) -> go.Figure:
             name="Expense",
             x=pivot.index,
             y=pivot["Expense"],
-            marker=dict(
-                color=COLOR_PRIMARY_TEXT,
-                line=dict(color=COLOR_PRIMARY_TEXT, width=1)
-            )
+            marker=dict(color=COLOR_PRIMARY_TEXT),
+            width=0.35
         ))
         
-    layout = BASE_LAYOUT.copy()
+    layout = SWISS_LAYOUT.copy()
     layout["barmode"] = "group"
-    layout["bargap"] = 0.25
-    layout["bargroupgap"] = 0.05
+    layout["bargap"] = 0.35
+    layout["bargroupgap"] = 0.1
     layout["xaxis"]["tickangle"] = -45
     fig.update_layout(**layout)
     return fig
 
 
 def create_category_breakdown_chart(df: pd.DataFrame) -> go.Figure:
-    """Sharp editorial category bar chart (horizontal) with cobalt leading highlight."""
+    """Clean, horizontal expense breakdown by category."""
     exp_df = df[df["Type"] == "Expense"]
     if exp_df.empty:
         return go.Figure()
@@ -109,55 +98,23 @@ def create_category_breakdown_chart(df: pd.DataFrame) -> go.Figure:
     cat_df = exp_df.groupby("Category")["Amount"].sum().reset_index()
     cat_df = cat_df.sort_values("Amount", ascending=True)
     
-    # Max category highlighted in Cobalt, others in charcoal shades
-    colors = [COLOR_PRIMARY_BLUE if i == len(cat_df) - 1 else "#363636" for i in range(len(cat_df))]
+    # Highest category gets primary cobalt, others slate charcoal
+    colors = [COLOR_PRIMARY_BLUE if i == len(cat_df) - 1 else "#5A5958" for i in range(len(cat_df))]
     
     fig = go.Figure(go.Bar(
         x=cat_df["Amount"],
         y=cat_df["Category"],
         orientation="h",
-        marker=dict(
-            color=colors,
-            line=dict(color=COLOR_BORDERS, width=1)
-        ),
+        marker=dict(color=colors),
         text=[f"${x:,.0f}" for x in cat_df["Amount"]],
         textposition="outside",
-        textfont=dict(color=COLOR_PRIMARY_TEXT, size=11, family="sans-serif")
+        textfont=dict(color=COLOR_PRIMARY_TEXT, size=10, family="Inter, sans-serif")
     ))
     
-    layout = BASE_LAYOUT.copy()
-    layout["margin"] = dict(t=20, b=20, l=10, r=50)
+    layout = SWISS_LAYOUT.copy()
+    layout["margin"] = dict(t=10, b=10, l=10, r=40)
     layout["xaxis"]["showgrid"] = False
-    fig.update_layout(**layout)
-    return fig
-
-
-def create_cumulative_balance_chart(df: pd.DataFrame) -> go.Figure:
-    """Cumulative Net Balance Timeline."""
-    if df.empty:
-        return go.Figure()
-        
-    chronological = df.sort_values("Date").copy()
-    chronological["Signed_Amount"] = chronological.apply(
-        lambda r: r["Amount"] if r["Type"] == "Income" else -r["Amount"], axis=1
-    )
-    chronological["Cumulative_Balance"] = chronological["Signed_Amount"].cumsum()
-    
-    # Aggregate by day
-    daily = chronological.groupby(chronological["Date"].dt.date)["Cumulative_Balance"].last().reset_index()
-    
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(
-        x=daily["Date"],
-        y=daily["Cumulative_Balance"],
-        mode="lines",
-        line=dict(color=COLOR_PRIMARY_BLUE, width=2.5),
-        fill="tozeroy",
-        fillcolor="rgba(19, 81, 170, 0.08)"
-    ))
-    
-    layout = BASE_LAYOUT.copy()
-    layout["showlegend"] = False
+    layout["yaxis"]["showgrid"] = False
     fig.update_layout(**layout)
     return fig
 
@@ -175,19 +132,19 @@ def create_budget_variance_chart(budget_records: List[Dict[str, Any]]) -> go.Fig
         
     fig = go.Figure()
     fig.add_trace(go.Bar(
-        name="Allocated Budget",
+        name="Budget Limit",
         x=b_df["Category"],
         y=b_df["Budget"],
-        marker=dict(color="#B0AFA9", line=dict(color=COLOR_BORDERS, width=1))
+        marker=dict(color="#BDBBB5")
     ))
     fig.add_trace(go.Bar(
-        name="Actual Spending",
+        name="Actual Spent",
         x=b_df["Category"],
         y=b_df["Actual"],
-        marker=dict(color=COLOR_PRIMARY_BLUE, line=dict(color=COLOR_PRIMARY_BLUE, width=1))
+        marker=dict(color=COLOR_PRIMARY_BLUE)
     ))
     
-    layout = BASE_LAYOUT.copy()
+    layout = SWISS_LAYOUT.copy()
     layout["barmode"] = "group"
     layout["xaxis"]["tickangle"] = -30
     fig.update_layout(**layout)

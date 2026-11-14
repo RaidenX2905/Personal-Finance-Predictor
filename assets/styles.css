@@ -1,5 +1,5 @@
-/* POSTER MODERNIST DESIGN SYSTEM STYLESHEET */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+/* SWISS MINIMALIST & MODERNIST EDITORIAL DESIGN SYSTEM */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
     --bg-canvas: #E3E2DE;
@@ -11,165 +11,187 @@
     --white: #FFFFFF;
 }
 
-/* Global App Container */
-html, body, [data-testid="stAppViewContainer"] {
+/* Base resets & typography */
+html, body, [data-testid="stAppViewContainer"], .stApp {
     background-color: var(--bg-canvas) !important;
     color: var(--primary-text) !important;
-    font-family: "General Sans", "Aileron", "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
 }
 
-[data-testid="stHeader"] {
-    background-color: transparent !important;
+/* Remove default Streamlit top header padding and decorations */
+header[data-testid="stHeader"] {
+    background: transparent !important;
+    height: 1rem !important;
 }
 
-[data-testid="stSidebar"] {
-    background-color: #DAD9D4 !important;
-    border-right: 1px solid var(--borders) !important;
+.stMainBlockContainer {
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+    max-width: 1200px !important;
 }
 
-/* Force zero radius & no shadows across all native components */
+/* Strict zero radius across all elements */
 * {
     border-radius: 0px !important;
     box-shadow: none !important;
-    text-shadow: none !important;
-    transition: all 0.25s linear !important;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-    }
+/* Clean, unadorned Sidebar */
+[data-testid="stSidebar"] {
+    background-color: #DAD9D4 !important;
+    border-right: 1px solid var(--borders) !important;
+    padding-top: 1.5rem !important;
 }
 
-/* Poster Modernist Editorial Typography */
-.pm-hero-title {
-    font-size: clamp(3rem, 7vw, 7.5rem);
-    font-weight: 900;
-    line-height: 0.85;
-    letter-spacing: -0.04em;
-    color: var(--primary-text);
+[data-testid="stSidebar"] hr {
+    border-color: var(--borders) !important;
+    margin: 1.5rem 0 !important;
+}
+
+/* Minimalist Navigation in Sidebar */
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] {
+    gap: 2px !important;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label {
+    padding: 0.65rem 1rem !important;
+    border-left: 2px solid transparent !important;
+    color: var(--secondary-text) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.02em !important;
+    background: transparent !important;
+    cursor: pointer !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label:hover {
+    background-color: #D3D2CC !important;
+    color: var(--primary-text) !important;
+}
+
+[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] {
+    border-left: 2px solid var(--primary-blue) !important;
+    background-color: #D3D2CC !important;
+    color: var(--primary-blue) !important;
+    font-weight: 600 !important;
+}
+
+/* Minimalist Editorial Page Title & Header */
+.swiss-header {
+    border-bottom: 1px solid var(--borders);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+.swiss-overline {
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
-    margin: 0 0 1rem 0;
-    padding: 0;
-    word-break: break-word;
-}
-
-.pm-section-title {
-    font-size: clamp(1.8rem, 4vw, 4rem);
-    font-weight: 700;
-    line-height: 0.92;
-    letter-spacing: -0.03em;
-    color: var(--primary-text);
-    text-transform: uppercase;
-    margin: 1.5rem 0 0.75rem 0;
-}
-
-.pm-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    letter-spacing: 0.15em;
     color: var(--muted-labels);
     margin-bottom: 0.35rem;
-    display: block;
 }
 
-.pm-body {
-    font-size: 1.125rem;
-    font-weight: 400;
+.swiss-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--primary-text);
+    margin: 0 0 0.5rem 0;
+}
+
+.swiss-subtitle {
+    font-size: 0.95rem;
     line-height: 1.5;
     color: var(--secondary-text);
+    margin: 0;
+    max-width: 720px;
 }
 
-.pm-cobalt {
-    color: var(--primary-blue) !important;
-}
-
-/* Architectural Hairline Divider */
-.pm-rule {
-    border: none;
+/* Minimalist Metric Units (No card wrapper, pure typographic architecture) */
+.swiss-metric-unit {
     border-top: 1px solid var(--borders);
-    margin: 1.5rem 0;
-    width: 100%;
+    padding-top: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
-/* 12-Column Grid Layout Simulation */
-.pm-grid-row {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    border-top: 1px solid var(--borders);
-    padding: 1.25rem 0;
-    align-items: flex-start;
+.swiss-metric-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted-labels);
+    margin-bottom: 0.25rem;
 }
 
-.pm-col-meta {
-    flex: 0 0 25%;
-    padding-right: 1.5rem;
-    border-right: 1px solid var(--borders);
-}
-
-.pm-col-content {
-    flex: 0 0 75%;
-    padding-left: 1.5rem;
-}
-
-/* Card & Block Elements */
-.pm-card {
-    background-color: var(--white);
-    border: 1px solid var(--borders);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.pm-card-cobalt {
-    background-color: var(--primary-blue);
-    border: 1px solid var(--primary-blue);
-    color: var(--white) !important;
-    padding: 2rem;
-}
-
-.pm-card-cobalt .pm-label {
-    color: #D2E2FC !important;
-}
-
-.pm-card-cobalt .pm-hero-title,
-.pm-card-cobalt .pm-section-title,
-.pm-card-cobalt .pm-body {
-    color: var(--white) !important;
-}
-
-.pm-metric-box {
-    background-color: transparent;
-    border-top: 1px solid var(--borders);
-    border-bottom: 1px solid var(--borders);
-    padding: 1rem 0;
-}
-
-.pm-metric-num {
-    font-size: clamp(2rem, 3.5vw, 3.8rem);
-    font-weight: 800;
+.swiss-metric-value {
+    font-size: 2.4rem;
+    font-weight: 700;
     line-height: 1;
     letter-spacing: -0.03em;
     color: var(--primary-text);
 }
 
-/* Buttons */
+.swiss-metric-value.primary-cobalt {
+    color: var(--primary-blue) !important;
+}
+
+.swiss-metric-sub {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted-labels);
+    margin-top: 0.35rem;
+}
+
+/* Section Rule & Heading */
+.swiss-section-rule {
+    border-top: 1px solid var(--borders);
+    padding-top: 0.75rem;
+    margin: 2.5rem 0 1rem 0;
+}
+
+.swiss-section-heading {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--primary-text);
+    margin-bottom: 0.75rem;
+}
+
+/* Form Inputs & Controls */
+input, select, textarea, [data-baseweb="select"] {
+    background-color: var(--white) !important;
+    border: 1px solid var(--borders) !important;
+    color: var(--primary-text) !important;
+    font-size: 0.9rem !important;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--primary-blue) !important;
+    outline: none !important;
+}
+
+/* Minimalist Primary Buttons */
 .stButton > button {
     background-color: var(--primary-blue) !important;
     color: var(--white) !important;
     border: 1px solid var(--primary-blue) !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.1em !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    font-size: 0.8rem !important;
     text-transform: uppercase !important;
-    font-size: 0.85rem !important;
-    padding: 0.75rem 1.75rem !important;
+    padding: 0.6rem 1.4rem !important;
+    transition: background-color 0.15s ease-in-out !important;
 }
 
 .stButton > button:hover {
-    background-color: #0F3F85 !important;
-    border-color: #0F3F85 !important;
+    background-color: #0E3E85 !important;
+    border-color: #0E3E85 !important;
 }
 
 .stButton > button[kind="secondary"] {
@@ -179,48 +201,50 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 
 .stButton > button[kind="secondary"]:hover {
-    background-color: #D5D4CE !important;
+    background-color: #D8D7D2 !important;
 }
 
-/* Inputs, TextFields, Selects */
-input, textarea, select, [data-baseweb="select"] {
-    background-color: var(--white) !important;
-    border: 1px solid var(--borders) !important;
-    color: var(--primary-text) !important;
+/* Clean Swiss Prediction Result Block */
+.swiss-prediction-block {
+    border-top: 2px solid var(--primary-blue);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
 }
 
-input:focus, textarea:focus {
-    border-color: var(--primary-blue) !important;
-    outline: none !important;
+.swiss-prediction-big {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+    margin: 0.25rem 0;
 }
 
-/* Tables and DataFrames */
+/* Tables & DataFrames */
 [data-testid="stDataFrame"] {
     border: 1px solid var(--borders) !important;
 }
 
-/* Radio and Navigation */
-[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label {
-    padding: 0.6rem 0.8rem !important;
-    border-left: 2px solid transparent !important;
-    color: var(--primary-text) !important;
+/* Clean minimal tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 1.5rem !important;
+    border-bottom: 1px solid var(--borders) !important;
+    padding-bottom: 0 !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+    background: transparent !important;
+    border: none !important;
+    color: var(--muted-labels) !important;
+    font-size: 0.8rem !important;
     font-weight: 600 !important;
-    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    padding: 0.6rem 0 !important;
 }
 
-[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label:hover {
-    background-color: #CECDC8 !important;
-}
-
-[data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] {
-    border-left: 3px solid var(--primary-blue) !important;
-    background-color: #D3D2CC !important;
+.stTabs [data-baseweb="tab"][aria-selected="true"] {
     color: var(--primary-blue) !important;
-}
-
-/* Alert Boxes */
-[data-testid="stAlert"] {
-    border: 1px solid var(--borders) !important;
-    background-color: #E8E7E3 !important;
-    color: var(--primary-text) !important;
+    border-bottom: 2px solid var(--primary-blue) !important;
 }
