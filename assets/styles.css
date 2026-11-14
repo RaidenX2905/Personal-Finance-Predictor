@@ -1,14 +1,15 @@
-/* MONOCHROME ARCHITECTURAL SYSTEM - PURE BLACK & WHITE */
+/* MONOCHROME LIGHT ARCHITECTURAL SYSTEM - PURE BLACK & WHITE */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg-canvas: #000000;
-    --surface: #0A0A0A;
-    --surface-alt: #121212;
-    --text-primary: #F4F4F4;
-    --text-secondary: #A0A0A0;
-    --text-muted: #666666;
-    --borders: #242424;
+    --bg-canvas: #FFFFFF;
+    --surface: #FAFAFA;
+    --surface-alt: #F4F4F4;
+    --text-primary: #000000;
+    --text-secondary: #4A4A4A;
+    --text-muted: #888888;
+    --borders: #E0E0E0;
+    --black: #000000;
     --white: #FFFFFF;
 }
 
@@ -39,9 +40,9 @@ header[data-testid="stHeader"] {
     max-width: 1200px !important;
 }
 
-/* Monochromatic Sidebar */
+/* Monochromatic Light Sidebar */
 [data-testid="stSidebar"] {
-    background-color: #060606 !important;
+    background-color: #F8F8F8 !important;
     border-right: 1px solid var(--borders) !important;
     padding-top: 1.5rem !important;
 }
@@ -69,15 +70,15 @@ header[data-testid="stHeader"] {
 }
 
 [data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label:hover {
-    background-color: #121212 !important;
-    color: var(--white) !important;
+    background-color: #EFEFEF !important;
+    color: var(--text-primary) !important;
 }
 
 [data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] {
-    border-left: 2px solid var(--white) !important;
-    background-color: #141414 !important;
-    color: var(--white) !important;
-    font-weight: 600 !important;
+    border-left: 2px solid var(--black) !important;
+    background-color: #EAEAEA !important;
+    color: var(--black) !important;
+    font-weight: 700 !important;
 }
 
 /* Monochromatic Page Header */
@@ -102,7 +103,7 @@ header[data-testid="stHeader"] {
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.05;
-    color: var(--white);
+    color: var(--text-primary);
     margin: 0 0 0.5rem 0;
 }
 
@@ -140,7 +141,7 @@ header[data-testid="stHeader"] {
 }
 
 .mono-metric-value.invert-focus {
-    color: var(--white) !important;
+    color: var(--black) !important;
 }
 
 .mono-metric-sub {
@@ -163,13 +164,13 @@ header[data-testid="stHeader"] {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--white);
+    color: var(--text-primary);
     margin-bottom: 0.75rem;
 }
 
 /* Monochromatic Inputs & Selects */
 input, select, textarea, [data-baseweb="select"] {
-    background-color: #0E0E0E !important;
+    background-color: var(--white) !important;
     border: 1px solid var(--borders) !important;
     color: var(--text-primary) !important;
     font-family: 'Space Grotesk', sans-serif !important;
@@ -177,15 +178,15 @@ input, select, textarea, [data-baseweb="select"] {
 }
 
 input:focus, textarea:focus {
-    border-color: var(--white) !important;
+    border-color: var(--black) !important;
     outline: none !important;
 }
 
 /* High Contrast Pure Black & White Buttons */
 .stButton > button {
-    background-color: var(--white) !important;
-    color: #000000 !important;
-    border: 1px solid var(--white) !important;
+    background-color: var(--black) !important;
+    color: var(--white) !important;
+    border: 1px solid var(--black) !important;
     font-family: 'Space Grotesk', sans-serif !important;
     font-weight: 700 !important;
     letter-spacing: 0.08em !important;
@@ -196,9 +197,9 @@ input:focus, textarea:focus {
 }
 
 .stButton > button:hover {
-    background-color: #CCCCCC !important;
-    border-color: #CCCCCC !important;
-    color: #000000 !important;
+    background-color: #333333 !important;
+    border-color: #333333 !important;
+    color: var(--white) !important;
 }
 
 .stButton > button[kind="secondary"] {
@@ -208,16 +209,16 @@ input:focus, textarea:focus {
 }
 
 .stButton > button[kind="secondary"]:hover {
-    background-color: #1A1A1A !important;
-    border-color: #444444 !important;
-    color: var(--white) !important;
+    background-color: #F0F0F0 !important;
+    border-color: #CCCCCC !important;
+    color: var(--black) !important;
 }
 
 /* Stark Monochromatic Prediction Block */
 .mono-prediction-block {
-    background-color: #0A0A0A;
+    background-color: #F8F8F8;
     border: 1px solid var(--borders);
-    border-left: 3px solid var(--white);
+    border-left: 3px solid var(--black);
     padding: 1.75rem;
     margin-top: 0.5rem;
 }
@@ -227,7 +228,7 @@ input:focus, textarea:focus {
     font-weight: 800;
     line-height: 0.95;
     letter-spacing: -0.04em;
-    color: var(--white);
+    color: var(--black);
     text-transform: uppercase;
     margin: 0.4rem 0;
 }
@@ -235,7 +236,7 @@ input:focus, textarea:focus {
 /* Tables & DataFrames */
 [data-testid="stDataFrame"] {
     border: 1px solid var(--borders) !important;
-    background-color: #0A0A0A !important;
+    background-color: var(--white) !important;
 }
 
 /* Monochromatic Tabs */
@@ -258,22 +259,22 @@ input:focus, textarea:focus {
 }
 
 .stTabs [data-baseweb="tab"][aria-selected="true"] {
-    color: var(--white) !important;
-    border-bottom: 2px solid var(--white) !important;
+    color: var(--black) !important;
+    border-bottom: 2px solid var(--black) !important;
 }
 
 /* Progress Bars */
 [data-testid="stProgress"] > div > div > div > div {
-    background-color: var(--white) !important;
+    background-color: var(--black) !important;
 }
 
 [data-testid="stProgress"] > div > div > div {
-    background-color: #1A1A1A !important;
+    background-color: #E8E8E8 !important;
 }
 
 /* Alerts */
 [data-testid="stAlert"] {
-    background-color: #0D0D0D !important;
+    background-color: #F5F5F5 !important;
     border: 1px solid var(--borders) !important;
     color: var(--text-primary) !important;
 }

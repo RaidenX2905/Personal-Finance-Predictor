@@ -137,8 +137,12 @@ def train_and_evaluate_model(
     return payload
 
 
+import streamlit as st
+
+
+@st.cache_resource(show_spinner=False)
 def load_model_artifact() -> Optional[Dict[str, Any]]:
-    """Safely load model artifact bundle. Retrain automatically if artifact missing or legacy."""
+    """Safely load model artifact bundle with in-memory caching."""
     if not os.path.exists(MODEL_PATH):
         try:
             return train_and_evaluate_model(save_artifact=True)

@@ -14,8 +14,12 @@ BASELINE_CSV_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Pe
 os.makedirs(DATA_DIR, exist_ok=True)
 
 
+import streamlit as st
+
+
+@st.cache_data(show_spinner=False)
 def load_baseline_data() -> pd.DataFrame:
-    """Load baseline historical CSV dataset with cleaned columns and types."""
+    """Load baseline historical CSV dataset with cleaned columns and types (cached)."""
     if not os.path.exists(BASELINE_CSV_FILE):
         return pd.DataFrame(columns=["Date", "Transaction Description", "Category", "Amount", "Type", "Source"])
     
