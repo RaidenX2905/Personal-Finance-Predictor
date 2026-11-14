@@ -55,13 +55,13 @@ st.markdown("""
 :root {
     --page-bg: #FCFCFD;
     --surface: #F4F3F4;
-    --primary-text: #141314;
-    --secondary-text: #454545;
-    --muted-text: #5C5C5C;
-    --hairline: #DDDDDD;
+    --primary-text: #111113;
+    --secondary-text: #2A2A2E;
+    --muted-text: #454545;
+    --hairline: #D0D0D4;
     --action-fill: #111113;
     --action-label: #FCFCFD;
-    --status-blue: #2563EB;
+    --status-blue: #1E40AF;
 }
 
 html, body, [data-testid="stAppViewContainer"], .stApp {
@@ -69,6 +69,18 @@ html, body, [data-testid="stAppViewContainer"], .stApp {
     color: var(--primary-text) !important;
     font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
     -webkit-font-smoothing: antialiased;
+}
+
+/* Global High Contrast Text Floors */
+p, span, label, [data-testid="stWidgetLabel"] p, [data-testid="stMarkdownContainer"] p {
+    color: #111113 !important;
+    font-weight: 500 !important;
+}
+
+.stCaption, [data-testid="stCaptionContainer"], [data-testid="stCaptionContainer"] p {
+    color: #333336 !important;
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
 }
 
 /* Header & Sidebar Collapse Trigger Button */
