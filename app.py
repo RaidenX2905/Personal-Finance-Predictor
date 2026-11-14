@@ -1,9 +1,11 @@
 """Personal Finance Predictor — Streamlit Entrypoint.
 
-Swiss Minimalist design philosophy:
-- Palette: #E3E2DE, #1351AA, #141414, #444343, #7A7A7A, #C7C7C7
-- Typographic discipline (Inter, proportional hierarchy)
-- Generous whitespace, zero radius, hairline 1px borders, zero card fluff
+Pure Black & White Monochromatic Architectural Interface:
+- Background: #000000
+- Borders: #242424
+- Primary Text: #F4F4F4
+- Active Elements & Highlights: #FFFFFF
+- Clean typographic scale: Space Grotesk + JetBrains Mono
 """
 
 import streamlit as st
@@ -29,13 +31,13 @@ from views.goals import render_goals_view
 
 # Page Configuration
 st.set_page_config(
-    page_title="Finance Analytics",
+    page_title="Personal Finance Predictor",
     page_icon="■",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Inject Global Swiss Minimalist CSS
+# Inject Global Monochromatic CSS
 inject_custom_css()
 
 
@@ -44,22 +46,22 @@ def main():
     
     with st.sidebar:
         st.markdown("""
-            <div style="padding-bottom: 0.5rem; margin-bottom: 1.25rem;">
-                <div style="font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: #7A7A7A; margin-bottom: 0.25rem;">
-                    ANALYTICS PLATFORM
+            <div style="padding-bottom: 0.5rem; margin-bottom: 1.5rem;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #666666; margin-bottom: 0.25rem;">
+                    FINANCIAL INTELLIGENCE
                 </div>
-                <div style="font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; color: #141414;">
+                <div style="font-size: 1.35rem; font-weight: 700; letter-spacing: -0.03em; color: #FFFFFF; text-transform: uppercase;">
                     Personal Finance
                 </div>
             </div>
         """, unsafe_allow_html=True)
         
         routes = [
-            "Dashboard",
+            "Overview",
             "Predictor",
             "Ledger Explorer",
             "Budgets",
-            "Goals"
+            "Capital Goals"
         ]
         
         selected_route = st.radio(
@@ -69,15 +71,15 @@ def main():
             label_visibility="collapsed"
         )
         
-        st.markdown("<div style='margin-top: 4rem;'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='margin-top: 5rem;'></div>", unsafe_allow_html=True)
         st.markdown("""
-            <div style="border-top: 1px solid #C7C7C7; padding-top: 1rem; font-size: 0.75rem; color: #7A7A7A; line-height: 1.6;">
-                <div>{count:,} records loaded</div>
-                <div>ML: Gradient Boosting</div>
+            <div style="border-top: 1px solid #242424; padding-top: 1rem; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #666666; line-height: 1.6;">
+                <div>{count:,} RECORDS SYNCHRONIZED</div>
+                <div>ML ENGINE: GBDT CALIBRATED</div>
             </div>
         """.format(count=len(df)), unsafe_allow_html=True)
         
-    if selected_route == "Dashboard":
+    if selected_route == "Overview":
         render_dashboard_view(df)
     elif selected_route == "Predictor":
         render_predictor_view()
@@ -85,7 +87,7 @@ def main():
         render_explorer_view(df)
     elif selected_route == "Budgets":
         render_budgets_view(df)
-    elif selected_route == "Goals":
+    elif selected_route == "Capital Goals":
         render_goals_view(df)
 
 

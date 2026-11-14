@@ -1,26 +1,33 @@
-/* SWISS MINIMALIST & MODERNIST EDITORIAL DESIGN SYSTEM */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* MONOCHROME ARCHITECTURAL SYSTEM - PURE BLACK & WHITE */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg-canvas: #E3E2DE;
-    --primary-blue: #1351AA;
-    --primary-text: #141414;
-    --secondary-text: #444343;
-    --muted-labels: #7A7A7A;
-    --borders: #C7C7C7;
+    --bg-canvas: #000000;
+    --surface: #0A0A0A;
+    --surface-alt: #121212;
+    --text-primary: #F4F4F4;
+    --text-secondary: #A0A0A0;
+    --text-muted: #666666;
+    --borders: #242424;
     --white: #FFFFFF;
 }
 
-/* Base resets & typography */
+/* App Canvas */
 html, body, [data-testid="stAppViewContainer"], .stApp {
     background-color: var(--bg-canvas) !important;
-    color: var(--primary-text) !important;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: var(--text-primary) !important;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
     -webkit-font-smoothing: antialiased;
-    letter-spacing: -0.01em;
 }
 
-/* Remove default Streamlit top header padding and decorations */
+/* Zero Radius & Zero Shadows Globally */
+* {
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* Header & Container Spacing */
 header[data-testid="stHeader"] {
     background: transparent !important;
     height: 1rem !important;
@@ -28,19 +35,13 @@ header[data-testid="stHeader"] {
 
 .stMainBlockContainer {
     padding-top: 2rem !important;
-    padding-bottom: 3rem !important;
+    padding-bottom: 3.5rem !important;
     max-width: 1200px !important;
 }
 
-/* Strict zero radius across all elements */
-* {
-    border-radius: 0px !important;
-    box-shadow: none !important;
-}
-
-/* Clean, unadorned Sidebar */
+/* Monochromatic Sidebar */
 [data-testid="stSidebar"] {
-    background-color: #DAD9D4 !important;
+    background-color: #060606 !important;
     border-right: 1px solid var(--borders) !important;
     padding-top: 1.5rem !important;
 }
@@ -50,185 +51,196 @@ header[data-testid="stHeader"] {
     margin: 1.5rem 0 !important;
 }
 
-/* Minimalist Navigation in Sidebar */
+/* Clean Sidebar Navigation */
 [data-testid="stSidebar"] .stRadio div[role="radiogroup"] {
-    gap: 2px !important;
+    gap: 4px !important;
 }
 
 [data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label {
-    padding: 0.65rem 1rem !important;
+    padding: 0.75rem 1rem !important;
     border-left: 2px solid transparent !important;
-    color: var(--secondary-text) !important;
+    color: var(--text-secondary) !important;
     font-size: 0.85rem !important;
     font-weight: 500 !important;
-    letter-spacing: 0.02em !important;
+    letter-spacing: 0.05em !important;
     background: transparent !important;
     cursor: pointer !important;
-    transition: all 0.15s ease-in-out !important;
+    transition: all 0.15s ease !important;
 }
 
 [data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label:hover {
-    background-color: #D3D2CC !important;
-    color: var(--primary-text) !important;
+    background-color: #121212 !important;
+    color: var(--white) !important;
 }
 
 [data-testid="stSidebar"] .stRadio div[role="radiogroup"] > label[data-checked="true"] {
-    border-left: 2px solid var(--primary-blue) !important;
-    background-color: #D3D2CC !important;
-    color: var(--primary-blue) !important;
+    border-left: 2px solid var(--white) !important;
+    background-color: #141414 !important;
+    color: var(--white) !important;
     font-weight: 600 !important;
 }
 
-/* Minimalist Editorial Page Title & Header */
-.swiss-header {
+/* Monochromatic Page Header */
+.mono-header {
     border-bottom: 1px solid var(--borders);
-    padding-bottom: 1.25rem;
-    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.25rem;
 }
 
-.swiss-overline {
+.mono-overline {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--muted-labels);
-    margin-bottom: 0.35rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
 }
 
-.swiss-title {
-    font-size: 2.2rem;
+.mono-title {
+    font-size: 2.5rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: var(--primary-text);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    color: var(--white);
     margin: 0 0 0.5rem 0;
 }
 
-.swiss-subtitle {
+.mono-subtitle {
     font-size: 0.95rem;
     line-height: 1.5;
-    color: var(--secondary-text);
+    color: var(--text-secondary);
     margin: 0;
     max-width: 720px;
 }
 
-/* Minimalist Metric Units (No card wrapper, pure typographic architecture) */
-.swiss-metric-unit {
+/* Monochromatic Metric Units */
+.mono-metric-unit {
     border-top: 1px solid var(--borders);
-    padding-top: 0.75rem;
+    padding-top: 1rem;
     margin-bottom: 1.5rem;
 }
 
-.swiss-metric-label {
+.mono-metric-label {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.68rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--muted-labels);
-    margin-bottom: 0.25rem;
+    color: var(--text-muted);
+    margin-bottom: 0.35rem;
 }
 
-.swiss-metric-value {
+.mono-metric-value {
     font-size: 2.4rem;
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.03em;
-    color: var(--primary-text);
+    color: var(--text-primary);
 }
 
-.swiss-metric-value.primary-cobalt {
-    color: var(--primary-blue) !important;
+.mono-metric-value.invert-focus {
+    color: var(--white) !important;
 }
 
-.swiss-metric-sub {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: var(--muted-labels);
-    margin-top: 0.35rem;
+.mono-metric-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.45rem;
 }
 
-/* Section Rule & Heading */
-.swiss-section-rule {
+/* Hairline Section Separators */
+.mono-section-rule {
     border-top: 1px solid var(--borders);
     padding-top: 0.75rem;
-    margin: 2.5rem 0 1rem 0;
+    margin: 2.5rem 0 1.25rem 0;
 }
 
-.swiss-section-heading {
+.mono-section-heading {
+    font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: var(--primary-text);
+    color: var(--white);
     margin-bottom: 0.75rem;
 }
 
-/* Form Inputs & Controls */
+/* Monochromatic Inputs & Selects */
 input, select, textarea, [data-baseweb="select"] {
-    background-color: var(--white) !important;
+    background-color: #0E0E0E !important;
     border: 1px solid var(--borders) !important;
-    color: var(--primary-text) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
     font-size: 0.9rem !important;
 }
 
 input:focus, textarea:focus {
-    border-color: var(--primary-blue) !important;
+    border-color: var(--white) !important;
     outline: none !important;
 }
 
-/* Minimalist Primary Buttons */
+/* High Contrast Pure Black & White Buttons */
 .stButton > button {
-    background-color: var(--primary-blue) !important;
-    color: var(--white) !important;
-    border: 1px solid var(--primary-blue) !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.05em !important;
+    background-color: var(--white) !important;
+    color: #000000 !important;
+    border: 1px solid var(--white) !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
     font-size: 0.8rem !important;
     text-transform: uppercase !important;
-    padding: 0.6rem 1.4rem !important;
-    transition: background-color 0.15s ease-in-out !important;
+    padding: 0.65rem 1.6rem !important;
+    transition: all 0.15s ease !important;
 }
 
 .stButton > button:hover {
-    background-color: #0E3E85 !important;
-    border-color: #0E3E85 !important;
+    background-color: #CCCCCC !important;
+    border-color: #CCCCCC !important;
+    color: #000000 !important;
 }
 
 .stButton > button[kind="secondary"] {
     background-color: transparent !important;
-    color: var(--primary-text) !important;
+    color: var(--text-primary) !important;
     border: 1px solid var(--borders) !important;
 }
 
 .stButton > button[kind="secondary"]:hover {
-    background-color: #D8D7D2 !important;
+    background-color: #1A1A1A !important;
+    border-color: #444444 !important;
+    color: var(--white) !important;
 }
 
-/* Clean Swiss Prediction Result Block */
-.swiss-prediction-block {
-    border-top: 2px solid var(--primary-blue);
-    padding-top: 1rem;
+/* Stark Monochromatic Prediction Block */
+.mono-prediction-block {
+    background-color: #0A0A0A;
+    border: 1px solid var(--borders);
+    border-left: 3px solid var(--white);
+    padding: 1.75rem;
     margin-top: 0.5rem;
 }
 
-.swiss-prediction-big {
-    font-size: 3.5rem;
-    font-weight: 700;
-    line-height: 1;
+.mono-prediction-big {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 0.95;
     letter-spacing: -0.04em;
-    color: var(--primary-blue);
+    color: var(--white);
     text-transform: uppercase;
-    margin: 0.25rem 0;
+    margin: 0.4rem 0;
 }
 
 /* Tables & DataFrames */
 [data-testid="stDataFrame"] {
     border: 1px solid var(--borders) !important;
+    background-color: #0A0A0A !important;
 }
 
-/* Clean minimal tabs */
+/* Monochromatic Tabs */
 .stTabs [data-baseweb="tab-list"] {
-    gap: 1.5rem !important;
+    gap: 1.75rem !important;
     border-bottom: 1px solid var(--borders) !important;
     padding-bottom: 0 !important;
 }
@@ -236,15 +248,32 @@ input:focus, textarea:focus {
 .stTabs [data-baseweb="tab"] {
     background: transparent !important;
     border: none !important;
-    color: var(--muted-labels) !important;
-    font-size: 0.8rem !important;
+    color: var(--text-muted) !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.75rem !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
-    padding: 0.6rem 0 !important;
+    letter-spacing: 0.12em !important;
+    padding: 0.65rem 0 !important;
 }
 
 .stTabs [data-baseweb="tab"][aria-selected="true"] {
-    color: var(--primary-blue) !important;
-    border-bottom: 2px solid var(--primary-blue) !important;
+    color: var(--white) !important;
+    border-bottom: 2px solid var(--white) !important;
+}
+
+/* Progress Bars */
+[data-testid="stProgress"] > div > div > div > div {
+    background-color: var(--white) !important;
+}
+
+[data-testid="stProgress"] > div > div > div {
+    background-color: #1A1A1A !important;
+}
+
+/* Alerts */
+[data-testid="stAlert"] {
+    background-color: #0D0D0D !important;
+    border: 1px solid var(--borders) !important;
+    color: var(--text-primary) !important;
 }

@@ -1,4 +1,4 @@
-"""Data Explorer View: Streamlined query interface, clean table, and simple entry forms."""
+"""Data Explorer View: High-contrast monochromatic query and transaction management."""
 
 import streamlit as st
 import pandas as pd
@@ -9,15 +9,14 @@ from core.data_manager import add_transaction, delete_transaction, import_csv_tr
 from core.config import (
     CATEGORIES_EXPENSE,
     CATEGORIES_INCOME,
-    COLOR_PRIMARY_BLUE,
+    COLOR_WHITE,
     COLOR_BORDERS,
-    COLOR_MUTED_LABELS,
-    COLOR_SECONDARY_TEXT
+    COLOR_MUTED_LABELS
 )
 
 
 def render_explorer_view(df: pd.DataFrame):
-    """Render clean, functional transaction ledger and entry manager."""
+    """Render clean, functional transaction ledger in pure black & white."""
     render_page_header(
         title="Transaction Ledger",
         subtitle="Search, filter, record, or export transaction records across baseline and user datasets.",
@@ -25,13 +24,12 @@ def render_explorer_view(df: pd.DataFrame):
     )
     
     tab_query, tab_new, tab_io = st.tabs([
-        "Ledger Query",
-        "Add Transaction",
-        "Import / Export"
+        "LEDGER QUERY",
+        "RECORD TRANSACTION",
+        "IMPORT / EXPORT"
     ])
     
     with tab_query:
-        # Search & Filter bar
         f1, f2, f3, f4 = st.columns([2, 2, 3, 3])
         
         with f1:
@@ -68,11 +66,11 @@ def render_explorer_view(df: pd.DataFrame):
             
         st.markdown(f"""
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin: 1.25rem 0 0.5rem 0;">
-                <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: {COLOR_MUTED_LABELS};">
-                    Showing {len(filtered):,} of {len(df):,} records
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: {COLOR_MUTED_LABELS};">
+                    MATCHING RECORDS: {len(filtered):,} / {len(df):,}
                 </span>
-                <span style="font-size: 0.85rem; font-weight: 600; color: {COLOR_PRIMARY_BLUE};">
-                    Subtotal: ${filtered['Amount'].sum():,.2f}
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: {COLOR_WHITE};">
+                    SUBTOTAL: ${filtered['Amount'].sum():,.2f}
                 </span>
             </div>
         """, unsafe_allow_html=True)
@@ -98,9 +96,9 @@ def render_explorer_view(df: pd.DataFrame):
         
         user_ids = [t for t in filtered["id"].tolist() if str(t).startswith("usr_")]
         if user_ids:
-            with st.expander("Delete User Transaction"):
+            with st.expander("REMOVE USER TRANSACTION"):
                 del_choice = st.selectbox("Select Transaction ID", user_ids)
-                if st.button("Delete Record", type="primary"):
+                if st.button("DELETE RECORD", type="primary"):
                     ok, msg = delete_transaction(del_choice)
                     if ok:
                         st.success(msg)
@@ -109,9 +107,9 @@ def render_explorer_view(df: pd.DataFrame):
                         st.error(msg)
                         
     with tab_new:
-        st.caption("POST NEW TRANSACTION")
+        st.caption("RECORD NEW ENTRY")
         
-        with st.form("clean_add_form", border=False):
+        with st.form("mono_add_form", border=False):
             c1, c2 = st.columns(2)
             with c1:
                 tx_type = st.selectbox("Type", ["Expense", "Income"])
@@ -120,10 +118,10 @@ def render_explorer_view(df: pd.DataFrame):
                 tx_amount = st.number_input("Amount ($)", min_value=0.01, value=150.00, step=10.0, format="%.2f")
             with c2:
                 tx_date = st.date_input("Date", value=datetime.today())
-                tx_desc = st.text_input("Description", placeholder="e.g. Office Supplies")
+                tx_desc = st.text_input("Description", placeholder="e.g. AWS Cloud Services")
                 
             st.write("")
-            create_btn = st.form_submit_button("Save Transaction", use_container_width=True)
+            create_btn = st.form_submit_button("SAVE RECORD", use_container_width=True)
             if create_btn:
                 ok, msg = add_transaction(
                     tx_date=tx_date.strftime("%Y-%m-%d"),
@@ -141,25 +139,25 @@ def render_explorer_view(df: pd.DataFrame):
     with tab_io:
         c_exp, c_imp = st.columns(2, gap="large")
         with c_exp:
-            st.caption("EXPORT LEDGER")
-            st.write("Download current ledger view in RFC 4180 CSV format.")
+            st.caption("EXPORT SNAPSHOT")
+            st.write("Download complete current ledger in RFC 4180 CSV format.")
             csv_bytes = df.to_csv(index=False).encode("utf-8")
             st.download_button(
-                label="Download CSV",
+                label="DOWNLOAD CSV",
                 data=csv_bytes,
-                file_name=f"finance_records_{datetime.now().strftime('%Y%m%d')}.csv",
+                file_name=f"ledger_{datetime.now().strftime('%Y%m%d')}.csv",
                 mime="text/csv",
                 use_container_width=True
             )
             
         with c_imp:
-            st.caption("IMPORT CSV")
-            st.write("Upload CSV with columns: Date, Transaction Description, Category, Amount, Type.")
+            st.caption("IMPORT EXTERNAL DATA")
+            st.write("Upload CSV with schema: Date, Transaction Description, Category, Amount, Type.")
             uploaded = st.file_uploader("Upload CSV", type=["csv"], label_visibility="collapsed")
-            if uploaded and st.button("Import File", use_container_width=True):
+            if uploaded and st.button("PROCESS CSV", use_container_width=True):
                 succ, fail, errs = import_csv_transactions(uploaded)
                 if succ > 0:
-                    st.success(f"Imported {succ:,} transaction(s).")
+                    st.success(f"Ingested {succ:,} transaction(s).")
                 if fail > 0:
                     st.warning(f"Skipped {fail} invalid row(s).")
                 if succ > 0:

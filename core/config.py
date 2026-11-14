@@ -1,34 +1,26 @@
-"""Design tokens, theme configuration, and global constants for Personal Finance Predictor."""
+"""Black and White Monochromatic Design Tokens and Theme Configuration."""
 
-# Poster Modernist Color System
-COLOR_BG = "#E3E2DE"
-COLOR_PRIMARY_BLUE = "#1351AA"
-COLOR_PRIMARY_TEXT = "#141414"
-COLOR_SECONDARY_TEXT = "#444343"
-COLOR_MUTED_LABELS = "#7A7A7A"
-COLOR_BORDERS = "#C7C7C7"
-
-# Derived UI state colors (strictly flat, non-vibrant)
+# Pure Monochromatic Palette
+COLOR_BG = "#000000"              # Deep Pitch Black canvas
+COLOR_SURFACE = "#0A0A0A"         # Slightly elevated dark plane
+COLOR_SURFACE_ALT = "#121212"     # Subtle card/row tint
+COLOR_PRIMARY_TEXT = "#F4F4F4"    # Pure stark white / off-white text
+COLOR_SECONDARY_TEXT = "#A0A0A0"  # Neutral mid-grey body
+COLOR_MUTED_LABELS = "#666666"    # Subtle technical dark grey labels
+COLOR_BORDERS = "#242424"         # 1px hairline precision architectural borders
+COLOR_ACCENT_WHITE = "#FFFFFF"    # Maximum contrast focus element
 COLOR_WHITE = "#FFFFFF"
-COLOR_SURFACE_ALT = "#D9D8D3"
-COLOR_ACCENT_HOVER = "#0F3F85"
-COLOR_INCOME_ACCENT = "#1351AA"
-COLOR_EXPENSE_ACCENT = "#141414"
-COLOR_WARNING_BORDER = "#8A4300"
 
-# Chart Palette (Poster Modernist Editorial Tones)
-CHART_PALETTE = [
-    "#1351AA",  # Primary Cobalt
-    "#141414",  # Heavy Ink
-    "#444343",  # Deep Graphite
-    "#7A7A7A",  # Slate
-    "#9E9D98",  # Stone
-    "#BDBBB5",  # Canvas Deep
-    "#2A6BC4",  # Sky Cobalt
-    "#558AD6",  # Light Cobalt
-]
+# Black & White Chart Tokens
+CHART_BG = "rgba(0,0,0,0)"
+CHART_LINE = "#FFFFFF"
+CHART_BAR_PRIMARY = "#FFFFFF"
+CHART_BAR_SECONDARY = "#333333"
+CHART_BAR_TERTIARY = "#666666"
+CHART_GRID = "#1A1A1A"
+CHART_BORDER = "#242424"
 
-# Standard Transaction Categories
+# Standard Categories
 CATEGORIES_EXPENSE = [
     "Food & Drink",
     "Rent",
