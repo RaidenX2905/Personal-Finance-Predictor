@@ -226,13 +226,42 @@ button[kind="header"] {
     line-height: 1;
 }
 
-/* Inputs & Form Controls */
-input, select, textarea, [data-baseweb="select"] {
+/* Inputs & Form Controls (Date inputs, Selects, Textboxes) */
+input, select, textarea, [data-baseweb="select"], [data-baseweb="input"], [data-testid="stDateInput"] {
     background-color: #FFFFFF !important;
     border: 1px solid var(--hairline) !important;
     border-radius: 12px !important;
-    color: var(--primary-text) !important;
+    color: #111113 !important;
     font-size: 0.9rem !important;
+}
+
+[data-testid="stDateInput"] input {
+    background-color: #FFFFFF !important;
+    color: #111113 !important;
+    border: none !important;
+    font-weight: 600 !important;
+}
+
+[data-baseweb="input"] {
+    background-color: #FFFFFF !important;
+    border: 1px solid var(--hairline) !important;
+    border-radius: 12px !important;
+}
+
+[data-testid="stDateInput"] svg, [data-baseweb="input"] svg {
+    fill: #111113 !important;
+    color: #111113 !important;
+}
+
+div[data-baseweb="popover"], div[data-baseweb="calendar"] {
+    background-color: #FFFFFF !important;
+    color: #111113 !important;
+    border: 1px solid var(--hairline) !important;
+    border-radius: 12px !important;
+}
+
+div[data-baseweb="calendar"] * {
+    color: #111113 !important;
 }
 
 /* Buttons - Universal High Contrast Styling */
