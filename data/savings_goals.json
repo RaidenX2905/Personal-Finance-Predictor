@@ -1,0 +1,18 @@
+[
+  {
+    "id": "goal_emergency",
+    "name": "Emergency Reserve",
+    "target_amount": 10000.0,
+    "current_amount": 4200.0,
+    "target_date": "2026-12-31",
+    "category": "Security"
+  },
+  {
+    "id": "goal_capital",
+    "name": "Venture Capital Seed",
+    "target_amount": 25000.0,
+    "current_amount": 12500.0,
+    "target_date": "2027-06-30",
+    "category": "Growth"
+  }
+]
