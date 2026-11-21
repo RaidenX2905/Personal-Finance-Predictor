@@ -2,6 +2,8 @@
 
 A minimalist, high-performance personal finance analytics and machine learning application built with Streamlit, Plotly, and scikit-learn.
 
+**Live Demo**: [https://pfpbyjsh.streamlit.app/](https://pfpbyjsh.streamlit.app/)
+
 ---
 
 ## Overview
